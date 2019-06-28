@@ -7,11 +7,12 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 rl.question("Do you want to rhyme somehting?\n\n", value => {
-  const re = new RegExp(/y|ok|sure|fine/gi)
+  const re = new RegExp(/y|ok|sure|fine/gi);
   if (re.test(value)) {
-      rl.question("\n\x1b[34mGreat! What word would you like to rhyme?\x1b[0m \n \n", value => {
+    rl.question(
+      "\n\x1b[34mGreat! What word would you like to rhyme?\x1b[0m \n \n",
+      value => {
         exec(
           `curl https://api.datamuse.com/words\?rel_rhy\=${value}`,
           (error, stdout, stderr) => {
@@ -36,9 +37,10 @@ rl.question("Do you want to rhyme somehting?\n\n", value => {
             //console.log(stderr);
           }
         );
-      });
+      }
+    );
   } else {
-    console.log('Too bad...')
+    console.log("Too bad...");
     rl.close();
   }
 });

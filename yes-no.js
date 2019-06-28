@@ -1,21 +1,17 @@
-const readline = require('readline');
+const readline = require("readline");
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+  input: process.stdin,
+  output: process.stdout
 });
 
-rl.question('Any example question?\n\n', (value) => {
-  switch (value.toLowerCase()) {
-    case 'yes':
-    case 'y':
+rl.question("Any example question?\n\n", value => {
+  const re = new RegExp(/y|ok|sure|fine/gi);
+  if (re.test(value)) {
     // case for yes
-      break;
-  
-    default:
-    // case for anything else you want
-      break;
-  }
-
     rl.close();
+  } else {
+    // case for no
+    rl.close();
+  }
 });
