@@ -23,18 +23,15 @@ rl.question("Do you want to rhyme somehting?\n\n", value => {
             fs.writeFile(
               `./results/${value}-rhyme-from-${date}.json`,
               stdout,
-              err => {
-                if (err) throw err;
-                console.log(
-                  `\x1b[36m \nYour rhymes are saved and rated in file:\x1b[0m ${value}-rhyme-from-${date}.json!`
-                );
-                console.log(
-                  `\nThe best result was\x1b[35m ${bestof[0].word}. \x1b[0m`
-                );
-              }
+              err => err ? (() => {throw new err})() : [] 
+            );
+            console.log(
+              `\x1b[36m \nYour rhymes are saved and rated in file:\x1b[0m ${value}-rhyme-from-${date}.json!`
+            );
+            console.log(
+              `\nThe best result was\x1b[35m ${bestof[0].word}. \x1b[0m`
             );
             rl.close();
-            //console.log(stderr);
           }
         );
       }
